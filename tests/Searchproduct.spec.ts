@@ -1,6 +1,14 @@
 import { test } from "@playwright/test";
 import {  MeliPage } from "../pages/homePage";
 import { SearchFunction } from "../pages/searchPage";
+import { CreateAccount } from "../pages/createAccount";
+
+
+
+test.beforeEach(async ({ page }, testInfo) => {
+  const CreateAccounts = new CreateAccount (page);
+  await CreateAccounts.LogIn();
+});
 
 
 test("Add to cart", async function ({ page }) {
@@ -10,6 +18,8 @@ test("Add to cart", async function ({ page }) {
   await searchFunction.fillSearch(
     "Play"
   );
+
+
   await meliPage.clickOnProduct();
 
   await meliPage.clickOnAddtocart();
